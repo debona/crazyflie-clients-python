@@ -65,6 +65,8 @@ class PySDL2Reader():
                 if (self.inputMap[index]["type"] == "Input.AXIS"):
                     key = self.inputMap[index]["key"]
                     axisvalue = e.jaxis.value / 32767.0
+                    # Offset the value first
+                    axisvalue = axisvalue + self.inputMap[index]["offset"]
                     # All axis are in the range [-a,+a]
                     axisvalue = axisvalue * self.inputMap[index]["scale"]
                     # The value is now in the correct direction and in the range [-1,1]
